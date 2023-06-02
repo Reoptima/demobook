@@ -1,0 +1,54 @@
+﻿<Window x:Class="demobook.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Loaded="Window_Loaded"
+        xmlns:local="clr-namespace:demobook"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="450" Width="800">
+    <Grid>
+        <!-- Добавьте здесь элементы управления, такие как таблицы для отображения товаров и заказов, текстовые поля и кнопки -->
+        <StackPanel>
+            <Label Content="Products" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+            <DataGrid x:Name="dgProducts" AutoGenerateColumns="False" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}"/>
+                    <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <Label Content="Product Name:"/>
+                <TextBox x:Name="txtProductName" Text="{Binding SelectedProduct.ProductName}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <Button Content="Add Product" Click="btnAddProduct_Click"/>
+                <Button Content="Update Product" Click="btnUpdateProduct_Click"/>
+                <Button Content="Delete Product" Click="btnDeleteProduct_Click"/>
+            </StackPanel>
+
+            <Label Content="Orders" FontSize="16" FontWeight="Bold" Margin="0,20,0,10"/>
+            <DataGrid x:Name="dgOrders" AutoGenerateColumns="False" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Order ID" Binding="{Binding OrderId}"/>
+                    <DataGridTextColumn Header="User ID" Binding="{Binding UserId}"/>
+                    <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}"/>
+                    <DataGridTextColumn Header="Order Date" Binding="{Binding OrderDate}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <Label Content="User ID:"/>
+                <TextBox x:Name="txtUserId" Text="{Binding SelectedOrder.UserId}"/>
+                <Label Content="Product ID:"/>
+                <TextBox x:Name="txtProductId" Text="{Binding SelectedOrder.ProductId}"/>
+                <Label Content="Order Date:"/>
+                <DatePicker x:Name="dpOrderDate" SelectedDate="{Binding SelectedOrder.OrderDate}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <Button Content="Add Order" Click="btnAddOrder_Click"/>
+                <Button Content="Update Order" Click="btnUpdateOrder_Click"/>
+                <Button Content="Delete Order" Click="btnDeleteOrder_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
